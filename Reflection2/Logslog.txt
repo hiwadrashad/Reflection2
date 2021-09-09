@@ -1,0 +1,4 @@
+Type name: ReflectThis.UserManager
+Type name: ReflectThis.User
+Type name: ReflectThis.UserManager+<>c__DisplayClass3_0
+Type name: ReflectThis.UserManager+<>c__DisplayClass4_0
