@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Reflection2.LIB.Interfaces
 {
-    public interface ILogging
+    public interface IServiceLocator
     {
-        void Logline(string Line);
+        void AddService<T, A>(T Interface, A Service);
+        T GetService<T,A>();
     }
 }

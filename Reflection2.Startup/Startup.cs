@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Reflection2.LIB.Desgin_Patterns;
+using Reflection2.LIB.Interfaces;
+using Reflection2.LIB.Methods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +32,7 @@ namespace Reflection2.Startup
         {
             var serviceTypes = new List<Type>();
             const string serviceNamespace = "Reflection2.LIB";
-            const string interfacesNamespace = "Reflection2.Lib.Interfaces";
+            const string interfacesNamespace = "Reflection2.LIB.Interfaces";
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -42,14 +45,20 @@ namespace Reflection2.Startup
              {
                 if (interfaceitem.IsInterface)
                 {
-                    var service = serviceTypes.FirstOrDefault(a => a.IsClass && interfaceitem.Name.Substring(1) == a.Name);
+                    var service = interfaceitem.Name.Substring(1);
+                    //var service = serviceTypes.FirstOrDefault(a => a.IsClass && interfaceitem.Name.Substring(1) == a.Name);
                     if (service != null)
                     {
-                        services.AddScoped(interfaceitem, service);
+                        //var ServiceLocator = ServiceLocatorSingleton.GetServiceLocator();
+                        //Type ServiceType = Type.GetType(service);
+                        //var ServiceInstance = Activator.CreateInstance(ServiceType);
+                        //ServiceLocator.AddService<ServiceInstance.GetType()> (interfaceitem,ServiceType);
+                        Preconfiguration preconfigurationinstance = new Preconfiguration();
+                        ServiceLocator ServiceLocator = new ServiceLocator();
+                        ServiceLocator.AddService <Type,Preconfiguration >(typeof(IPreconfiguration), preconfigurationinstance);
                     }
                 }
              }
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

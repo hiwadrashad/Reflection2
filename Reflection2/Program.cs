@@ -1,12 +1,15 @@
-﻿using Reflection2.LIB.Interfaces;
+﻿using Reflection2.LIB.Desgin_Patterns;
+using Reflection2.LIB.Interfaces;
+using Reflection2.LIB.Methods;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace Reflection2
 {
     public class Program
     {
-        private  readonly IPreconfiguration _preconfiguration;
+        private readonly IPreconfiguration _preconfiguration;
         private readonly ILogic _logic;
         public Program(IPreconfiguration preconfiguration, ILogic logic)
         {
@@ -15,11 +18,12 @@ namespace Reflection2
         }
         static void Main(string[] args)
         {
+            Thread.Sleep(10000);
             Console.WriteLine("=============================== reflection assembly object metadata ======================================");
             Console.WriteLine("\n");
             Console.WriteLine("Load in dll file as assembly object at run time");
             Console.WriteLine("\n");
-            Reflection2.LIB.Methods.Preconfiguration preconfiguration = new LIB.Methods.Preconfiguration();
+            Reflection2.LIB.Methods.Preconfiguration preconfiguration = new Preconfiguration();
             Console.WriteLine("Iterate on all types");
             Console.WriteLine("\n");
             Reflection2.LIB.Methods.Logic Logic = new LIB.Methods.Logic();
