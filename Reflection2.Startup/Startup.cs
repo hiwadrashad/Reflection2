@@ -13,6 +13,7 @@ using Reflection2.LIB.Methods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -49,13 +50,19 @@ namespace Reflection2.Startup
                     //var service = serviceTypes.FirstOrDefault(a => a.IsClass && interfaceitem.Name.Substring(1) == a.Name);
                     if (service != null)
                     {
-                        //var ServiceLocator = ServiceLocatorSingleton.GetServiceLocator();
-                        //Type ServiceType = Type.GetType(service);
-                        //var ServiceInstance = Activator.CreateInstance(ServiceType);
-                        //ServiceLocator.AddService<ServiceInstance.GetType()> (interfaceitem,ServiceType);
-                        Preconfiguration preconfigurationinstance = new Preconfiguration();
-                        ServiceLocator ServiceLocator = new ServiceLocator();
-                        ServiceLocator.AddService <Type,Preconfiguration >(typeof(IPreconfiguration), preconfigurationinstance);
+                        string FQN = "";
+                        if (service == "ServiceLocator")
+                        {
+
+                            FQN = "Reflection2.LIB.Desgin_Patterns.ServiceLocator, Reflection2.LIB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+                        }
+                        else
+                        {
+                            FQN = "Reflection2.LIB.Methods." + service + ", Reflection2.LIB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+                        }
+                        var ServiceLocator = ServiceLocatorSingleton.GetServiceLocator();
+                        Type ServiceType = Type.GetType(FQN);
+                        ServiceLocator.AddService <Type,Type >(interfaceitem, ServiceType);
                     }
                 }
              }

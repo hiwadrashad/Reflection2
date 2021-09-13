@@ -15,6 +15,7 @@ namespace Reflection2.LIB.Logging
             string currentdirectory = Environment.CurrentDirectory;
             string relativepath = currentdirectory + @"\..\..\..\..\Reflection2.LIB\Logs\";
             File.AppendAllText(relativepath + "log.txt", Line + Environment.NewLine);
+
         }
     }
 }

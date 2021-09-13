@@ -18,7 +18,7 @@ namespace Reflection2
         }
         static void Main(string[] args)
         {
-            Thread.Sleep(10000);
+            //Thread.Sleep(10000);
             Console.WriteLine("=============================== reflection assembly object metadata ======================================");
             Console.WriteLine("\n");
             Console.WriteLine("Load in dll file as assembly object at run time");
@@ -43,6 +43,9 @@ namespace Reflection2
             Console.WriteLine("\n");
             Console.WriteLine("==========================================================");
             Logic.AssignData(types);
+            var sometype = Logic.GetType();
+            Console.WriteLine(sometype.FullName);
+            Console.WriteLine();
         }
     }
 }

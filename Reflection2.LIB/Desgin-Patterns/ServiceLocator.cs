@@ -15,13 +15,15 @@ namespace Reflection2.LIB.Desgin_Patterns
             servicecontainer = new Dictionary<object, object>();
         }
 
-        public void AddService<T,A>(T InterfaceType, A Service)
+        public void AddService<T,A>(T InterfaceType, A ServiceType)
         {
+
+            var ServiceInstance = Activator.CreateInstance(ServiceType as Type);
             if (servicecontainer == null || servicecontainer.Count == 0)
             {
                 servicecontainer = new Dictionary<object, object>();
             }
-            servicecontainer.Add(InterfaceType, Service);
+            servicecontainer.Add(InterfaceType, ServiceInstance);
         }
         public T GetService<T,A>()
         {
